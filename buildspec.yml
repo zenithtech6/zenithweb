@@ -1,0 +1,23 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      # Use a modern Node.js version
+      nodejs: 18 
+    commands:
+      # Install project dependencies
+      - echo Installing dependencies...
+      - npm install
+
+  build:
+    commands:
+      # Run the React build command
+      - echo Running npm run build...
+      - npm run build
+
+artifacts:
+  # Crucial: This tells CodeBuild to zip up the 'build' folder content
+  files:
+    - '**/*'
+  base-directory: build
