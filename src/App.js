@@ -1,7 +1,22 @@
 import logo from './logo.svg';
 import './App.css';
+import { useEffect } from 'react';
+import axios from 'axios';
+import { backend_url } from './lib/config';
 
 function App() {
+  const getSales = async () => {
+   try {
+    const response = await axios.get(`${backend_url}/admin/get_sales`);
+    console.log(response.data);
+   } catch (error) {
+    console.error("Error fetching sales data:", error);
+   }
+  }
+  useEffect(() => {
+    console.log("App component mounted");
+    getSales();
+  }, []);
   return (
     <div className="App">
       <header className="App-header">
